@@ -1,0 +1,11 @@
+--mostra a quantidade produzida de laranjas de todos os estados no ano de 2020
+select * from quantidade_produzida_laranja where ano_quantidade_laranja = 2020;
+
+-- mostra a quantidade produzida de limao do estado de sao paulo desde 2015
+select ano_quantidade_limao, sao_paulo_limao from quantidade_produzida_limao;
+
+--mostra a media produzida pelo estado do RS desde 2015
+select avg(rio_grande_sul_limao) as media from quantidade_produzida_limao;
+
+-- mostra a media de producao total do rs, sp e mg dos anos de 2020 até 2023
+select avg(rio_grande_sul_total), avg(sao_paulo_total), avg(minas_gerais_total) from quantidade_produzida_total where ano > 2019;

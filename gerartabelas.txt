@@ -1,0 +1,105 @@
+CREATE TABLE quantidade_produzida_limao (
+  ano_quantidade_limao NUMBER(10) DEFAULT NULL NULL,
+  rondonia_limao NUMBER(10) DEFAULT NULL NULL,
+  acre_limao NUMBER(10) DEFAULT NULL NULL,
+  amazonia_limao NUMBER(10) DEFAULT NULL NULL,
+  roraima_limao NUMBER(10) DEFAULT NULL NULL,
+  para_limao NUMBER(10) DEFAULT NULL NULL,
+  amapa_limao NUMBER(10) DEFAULT NULL NULL,
+  tocantins_limao NUMBER(10) DEFAULT NULL NULL,
+  maranhao_limao NUMBER(10) DEFAULT NULL NULL,
+  piaui_limao NUMBER(10) DEFAULT NULL NULL,
+  ceara_limao NUMBER(10) DEFAULT NULL NULL,
+  rio_grande_norte_limao NUMBER(10) DEFAULT NULL NULL,
+  paraiba_limao NUMBER(10) DEFAULT NULL NULL,
+  alagoas_limao NUMBER(10) DEFAULT NULL NULL,
+  sergipe_limao NUMBER(10) DEFAULT NULL NULL,
+  bahia_limao NUMBER(10) DEFAULT NULL NULL,
+  minas_gerais_limao NUMBER(10) DEFAULT NULL NULL,
+  espirito_santo_limao NUMBER(10) DEFAULT NULL NULL,
+  rio_janeiro_limao NUMBER(10) DEFAULT NULL NULL,
+  sao_paulo_limao NUMBER(10) DEFAULT NULL NULL,
+  parana_limao NUMBER(10) DEFAULT NULL NULL,
+  santa_catarina_limao NUMBER(10) DEFAULT NULL NULL,
+  rio_grande_sul_limao NUMBER(10) DEFAULT NULL NULL,
+  mato_grosso_sul_limao NUMBER(10) DEFAULT NULL NULL,
+  mato_grosso_limao NUMBER(10) DEFAULT NULL NULL,
+  goiais_limao NUMBER(10) DEFAULT NULL NULL,
+  distrito_federal_limao NUMBER(10) DEFAULT NULL NULL,
+  PRIMARY KEY (ano_quantidade_limao)
+);
+		
+CREATE TABLE quantidade_produzida_laranja (
+  ano_quantidade_laranja NUMBER(10) DEFAULT NULL NULL,
+  rondonia_laranja NUMBER(10) DEFAULT NULL NULL,
+  acre_laranja NUMBER(10) DEFAULT NULL NULL,
+  amazonia_laranja NUMBER(10) DEFAULT NULL NULL,
+  roraima_laranja NUMBER(10) DEFAULT NULL NULL,
+  para_laranja NUMBER(10) DEFAULT NULL NULL,
+  amapa_laranja NUMBER(10) DEFAULT NULL NULL,
+  tocantins_laranja NUMBER(10) DEFAULT NULL NULL,
+  maranhao_laranja NUMBER(10) DEFAULT NULL NULL,
+  piaui_laranja NUMBER(10) DEFAULT NULL NULL,
+  ceara_laranja NUMBER(10) DEFAULT NULL NULL,
+  rio_grande_norte_laranja NUMBER(10) DEFAULT NULL NULL,
+  paraiba_laranja NUMBER(10) DEFAULT NULL NULL,
+  alagoas_laranja NUMBER(10) DEFAULT NULL NULL,
+  sergipe_laranja NUMBER(10) DEFAULT NULL NULL,
+  bahia_laranja NUMBER(10) DEFAULT NULL NULL,
+  minas_gerais_laranja NUMBER(10) DEFAULT NULL NULL,
+  espirito_santo_laranja NUMBER(10) DEFAULT NULL NULL,
+  rio_janeiro_laranja NUMBER(10) DEFAULT NULL NULL,
+  sao_paulo_laranja NUMBER(10) DEFAULT NULL NULL,
+  parana_laranja NUMBER(10) DEFAULT NULL NULL,
+  santa_catarina_laranja NUMBER(10) DEFAULT NULL NULL,
+  rio_grande_sul_laranja NUMBER(10) DEFAULT NULL NULL,
+  mato_grosso_sul_laranja NUMBER(10) DEFAULT NULL NULL,
+  mato_grosso_laranja NUMBER(10) DEFAULT NULL NULL,
+  goiais_laranja NUMBER(10) DEFAULT NULL NULL,
+  distrito_federal_laranja NUMBER(10) DEFAULT NULL NULL,
+  PRIMARY KEY (ano_quantidade_laranja)
+);
+		
+CREATE TABLE quantidade_produzida_total (
+  ano NUMBER(10) DEFAULT NULL NULL,
+  rondonia_total NUMBER(10) DEFAULT NULL NULL,
+  acre_total NUMBER(10) DEFAULT NULL NULL,
+  amazonia_total NUMBER(10) DEFAULT NULL NULL,
+  roraima_total NUMBER(10) DEFAULT NULL NULL,
+  para_total NUMBER(10) DEFAULT NULL NULL,
+  amapa_total NUMBER(10) DEFAULT NULL NULL,
+  tocantins_total NUMBER(10) DEFAULT NULL NULL,
+  maranhao_total NUMBER(10) DEFAULT NULL NULL,
+  piaui_total NUMBER(10) DEFAULT NULL NULL,
+  ceara_total NUMBER(10) DEFAULT NULL NULL,
+  rio_grande_norte_total NUMBER(10) DEFAULT NULL NULL,
+  paraiba_total NUMBER(10) DEFAULT NULL NULL,
+  alagoas_total NUMBER(10) DEFAULT NULL NULL,
+  sergipe_total NUMBER(10) DEFAULT NULL NULL,
+  bahia_total NUMBER(10) DEFAULT NULL NULL,
+  minas_gerais_total NUMBER(10) DEFAULT NULL NULL,
+  espirito_santo_total NUMBER(10) DEFAULT NULL NULL,
+  rio_janeiro_total NUMBER(10) DEFAULT NULL NULL,
+  sao_paulo_total NUMBER(10) DEFAULT NULL NULL,
+  parana_total NUMBER(10) DEFAULT NULL NULL,
+  santa_catarina_total NUMBER(10) DEFAULT NULL NULL,
+  rio_grande_sul_total NUMBER(10) DEFAULT NULL NULL,
+  mato_grosso_sul_total NUMBER(10) DEFAULT NULL NULL,
+  mato_grosso_total NUMBER(10) DEFAULT NULL NULL,
+  goiais_total NUMBER(10) DEFAULT NULL NULL,
+  distrito_federal_total NUMBER(10) DEFAULT NULL NULL,
+  PRIMARY KEY (ano)
+);
+
+CREATE SEQUENCE quantidade_produzida_total_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER quantidade_produzida_total_seq_tr
+ BEFORE INSERT ON quantidade_produzida_total FOR EACH ROW
+ WHEN (NEW.ano IS NULL)
+BEGIN
+ SELECT quantidade_produzida_total_seq.NEXTVAL INTO :NEW.ano FROM DUAL;
+END;
+
+
+ALTER TABLE quantidade_produzida_limao ADD FOREIGN KEY (ano_quantidade_limao) REFERENCES quantidade_produzida_total (ano);
+ALTER TABLE quantidade_produzida_laranja ADD FOREIGN KEY (ano_quantidade_laranja) REFERENCES quantidade_produzida_total (ano);
